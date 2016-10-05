@@ -1,5 +1,6 @@
 ﻿using MovieShopDll;
 using MovieShopDll.Entities;
+using MyMovieShopAdmin.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -66,6 +67,24 @@ namespace MyMovieShopAdmin.Controllers
             return RedirectToAction("../Home/Index");
         }
 
+        [HttpGet]
+        public ActionResult CreateUser()
+        {
+           
+            return View();
+        }
+        [HttpPost]
+        public ActionResult CreateUser(Customer c, Address a)
+        {
+            if(c != null && a != null)
+            {
+            c.Role = "user";
+            c.Address = a;
+            cm.Create(c);
+            return RedirectToAction("Login");
+            }
+            return View();
+        }
 
 
     }

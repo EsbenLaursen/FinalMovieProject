@@ -23,6 +23,7 @@ namespace MovieShopDll.Managers
         public override Genre Create(MovieShopDBContext ctx, Genre t)
         {
             ctx.Genres.Add(t);
+            ctx.SaveChanges();
             return t;
         }
 
@@ -31,11 +32,13 @@ namespace MovieShopDll.Managers
         {
             Genre o = ctx.Genres.FirstOrDefault(x => x.Id == id);
             ctx.Genres.Remove(o);
+            ctx.SaveChanges();
             return true;
         }
 
         public override Genre Update(MovieShopDBContext ctx, Genre t)
         {
+            ctx.SaveChanges();
             throw new NotImplementedException();
         }
     }
