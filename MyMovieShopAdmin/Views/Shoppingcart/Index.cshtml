@@ -1,0 +1,66 @@
+﻿@model MyMovieShopAdmin.Models.ViewModels.HomeShoppingCartViewModel
+@{
+    ViewBag.Title = "ShoppingCart";
+}
+
+<h2>ShoppingCart</h2>
+@if (Model.Movies.Count == 0)
+{
+    <tr> Your cart is empty! </tr>
+} else
+{ 
+
+
+
+<table class="table table-hover" style="background-color:white">
+    <thead >
+        <tr>
+            <td>Title</td>
+            <td>Year</td>
+            <td>Genre</td>
+            <td>Price</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var movie in Model.Movies)
+        {
+            <tr>
+                <td>@movie.Title</td>
+                <td>@movie.Year</td>
+                <td>@movie.Genre.Name</td>
+                <td>@movie.Price</td>   
+                <td><a href="~/Shoppingcart/Delete/@movie.Id" class="btn btn-danger">Remove</a></td>
+            </tr>
+        }
+        
+        
+    </tbody>
+</table>
+}
+<table class="table" style="background-color:orangered">
+    <tr>
+        <td>Total Items</td>
+        <td></td>
+        <td></td>
+        <td>@Model.Movies.Count</td>
+    </tr>
+    <tr>
+        <td>Total price</td>
+        <td></td>
+        <td></td>
+        <td>@Model.TotalPrice</td>
+       
+            </tr>
+</table>
+@if (Model.Movies.Count == 0)
+{
+    <td><a href="~/Home/Index" class="btn btn-success" style="display:block; margin-left:auto; margin-right:10px"> Continue shopping!</a></td>
+}
+else
+{
+    <td><a href="~/Shoppingcart/Checkout" class="btn btn-success" style="display:block; margin-left:auto; margin-right:10px"> Buy now!</a></td>
+}
+
+<style>
+
+</style>

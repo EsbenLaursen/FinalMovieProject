@@ -1,0 +1,123 @@
+﻿@model List<MovieShopDll.Entities.Movie>
+@{
+    ViewBag.Title = "Search";
+}
+
+<div class="container" style="margin:10px">
+    <div class="row">
+        <div id="filter-panel" class="collapse filter-panel">
+            <div class="panel panel-default">
+                <div class="panel-body" style="background-color:#808080">
+                    <form class="form-inline" role="form" action="~/Search/AdvancedSearch" method="post">
+                        <div class="form-group">
+                            <label class="filter-col" style="margin-right:0;" for="pref-perpage">Rows per page:</label>
+                            <select id="pref-perpage" class="form-control" name="perpage">
+                                <option value="2">2</option> @*value="@pagerpage" @Model.SearchCriteria.Perpage == selected ? "Selected" : "") @Searchcriteria.Perpage*@
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option selected="selected" value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                                <option value="30">30</option>
+                                <option value="40">40</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+                        </div> <!-- form group [rows] -->
+                        <div class="form-group">
+                            <label class="filter-col" style="margin-right:0;" for="pref-search">Search:</label>
+                            <input type="text" class="form-control input-sm" id="pref-search" name="searchQuery">
+                        </div><!-- form group [search] -->
+                        <div class="form-group">
+                            <label class="filter-col" style="margin-right:0;" for="pref-orderby">Order by:</label>
+                            <select id="pref-orderby" class="form-control" name="orderby">
+                                <option>Descending</option>
+                                <option>Ascending</option>
+                            </select>
+                        </div> <!-- form group [order by] -->
+                        <div class="form-group">
+                            <label class="filter-col" style="margin-right:0;" for="pref-genre">Genre:</label>
+                            <select id="pref-genre" class="form-control" name="genre">
+                                <option>All</option>
+                                <option>Adventure</option>
+                                <option>Action</option>
+                                <option>Anime</option>
+                                <option>Horror</option>
+                                <option>Comedy</option>
+                                <option>Thriller</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="margin-top:25px; margin-left:20px">
+                            <button type="submit" class="btn btn-default filter-col" value="Click">
+                                @*onclick!!*@
+                                <span class="glyphicon glyphicon-record"></span> Save Settings
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#filter-panel">
+            <span class="glyphicon glyphicon-cog"></span> Advanced Search
+        </button>
+    </div>
+</div>
+
+
+
+@if (Model.Count == 0)
+{
+    <p>The search query didnt match any criteria of yourses</p>
+}
+else
+{
+    <table class="table">
+        @foreach (var movie in Model)
+        {
+            <tr>
+                <td class="whattocall"><b style="font-size:40px">@movie.Title</b><br />Genre: @movie.Genre.Name<br />Price: @movie.Price<br /> Year: @movie.Year</td>
+                <td><a href="~/Movie/Index/@movie.Id"><div class="grow now" style="height:200px; width:150px"><img src="@movie.ImageUrl" height="200" width="150" /></div></a></td>
+                <td><a href="~/Movie/Added/@movie.Id" class="btn btn-success" style="width:150px; margin: 60px 40px 20px 80px"> Add to cart </a></td>
+            </tr>
+        }
+    </table>
+}
+
+<h2>Search</h2>
+<style>
+    .whattocall {
+        color: #ffd800;
+        font-size: 20px;
+    }
+
+    .grow img {
+        -webkit-transition: all 1s ease;
+        -moz-transition: all 1s ease;
+        -o-transition: all 1s ease;
+        transition: all 1s ease;
+    }
+
+        .grow img:hover {
+            width: 130%;
+            height: 130%;
+            box-shadow: 3px 3px 3px #b6ff00;
+            position: relative;
+        }
+
+    .filter-col {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+</style>
+<script>
+
+
+
+
+
+</script>

@@ -1,0 +1,203 @@
+﻿@model MyMovieShopAdmin.Models.ViewModels.HomeIndexViewModel
+@{
+    ViewBag.Title = "My page";
+}
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
+
+    <!-- Website CSS style -->
+    <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+
+    <!-- Website Font style -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+</head>
+<body>
+    @*snippet from http://bootsnipp.com/snippets/featured/register-page*@
+
+    <div class="panel-heading">
+        <div class="panel-title text-center">
+            <h1 class="title">My information</h1>
+        </div>
+    </div>
+    <div class="main-login main-center">
+        <form class="form-horizontal" method="post" action="~/Home/About">
+            <div class="form-group">
+                <label for="name" class="cols-sm-2 control-label">Name</label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                        <input type="text" class="form-control" name="FirstName" id="FirstName" value="@Model.Customer.FirstName"/>
+                        @Html.ValidationMessage("FirstName", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="name" class="cols-sm-2 control-label">Last name</label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                        <input type="text" class="form-control" name="lastname" id="LastName" value="@Model.Customer.LastName" />
+                        @Html.ValidationMessage("LastName", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="addressCity" class="cols-sm-2 control-label">Address</label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-home fa-lg" aria-hidden="true"></i> City:</span>
+                        <input type="text" class="form-control" name="City" id="addressCity" value="@Model.Customer.Address.City" />
+                        <span class="input-group-addon"><i class="fa fa-home fa-lg" aria-hidden="true"></i> Zipcode:</span>
+                        <input type="text" class="form-control" name="ZipCode" id="addressCity" value="@Model.Customer.Address.ZipCode" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-home fa-lg" aria-hidden="true"></i> StreetName:</span>
+                        <input type="text" class="form-control" name="StreetName" id="addressZip" value="@Model.Customer.Address.StreetName" />
+                        <span class="input-group-addon"><i class="fa fa-home fa-lg" aria-hidden="true"></i> Streetnumber</span>
+                        <input type="text" class="form-control" name="StreetNumber" id="addressCity" value="@Model.Customer.Address.StreetNumber" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email" class="cols-sm-2 control-label">Email</label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                        <input type="text" class="form-control" name="email" id="email" value="@Model.Customer.Email" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" btn btn-primary btn-lg btn-block">Save</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="panel-heading">
+        <div class="panel-title text-center">
+            <h1 class="title">My orders</h1>
+        </div>
+    </div>
+    <div class="main-login main-center">
+        <div class="form-horizontal">
+            @*http://www.w3schools.com/bootstrap/bootstrap_collapse.asp*@
+            <div class="panel-group" id="accordion">
+                @foreach (var order in Model.Orders)
+            {
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#@order.Id">
+                                    Order number: @order.Id - Date: @order.Date
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="@order.Id" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <table class="table table-hover" style="background-color:white">
+                                    <thead>
+                                        <tr>
+                                            <td>Id</td>
+                                            <td>Name</td>
+                                            <td>Movies bought</td>
+                                            <td>Total price</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>@order.Id</td>
+                                            <td>@order.Customer.FirstName</td>
+
+                                            <td>
+                                                @foreach (var movie in order.Movies)
+                                                {
+                                                    <p>@movie.Title (@movie.Price$)</p>
+                                                }
+                                            </td>
+                                            <td>@order.Movies.Sum(x => x.Price)</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+            </div>
+
+        </div>
+    </div>
+</body>
+
+<style>
+    body, html{
+ 	font-family: 'Oxygen', sans-serif;
+}
+
+.main{
+ 	margin-top: 70px;
+}
+
+h1.title { 
+	font-size: 50px;
+	font-family: 'Passion One', cursive; 
+	font-weight: 400; 
+}
+
+hr{
+	width: 10%;
+	color: #fff;
+}
+
+.form-group{
+	margin-bottom: 15px;
+}
+
+label{
+	margin-bottom: 15px;
+}
+
+input,
+input::-webkit-input-placeholder {
+    font-size: 11px;
+    padding-top: 3px;
+}
+
+.main-login{
+ 	background-color: #fff;
+    /* shadows and rounded borders */
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+
+}
+
+.main-center{
+ 	margin-top: 10px;
+ 	margin: 20px auto;
+ 	max-width: 600px;
+    padding: 20px 40px;
+
+}
+
+.login-button{
+	margin-top: 5px;
+}
+
+</style>

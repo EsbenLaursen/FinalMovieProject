@@ -1,0 +1,44 @@
+﻿@model MyMovieShopAdmin.Models.ViewModels.MoviesIndexViewModel
+<head>
+    <link rel="stylesheet" type="text/css" href="~/Content/StyleSheetIndex.css" />
+</head>
+<h1 style="color:#ffd800; text-align:center"><b>@Model.Movie.Title</b></h1>
+
+
+
+
+<div class="div p myclass">
+
+    <iframe width="800" height="450" src="@Model.Movie.TrailerUrl" frameborder="0" allowfullscreen class="btn-group"></iframe>
+        <div class="btn-group" style="margin: 0px 0px 0px 30px; border: 5px solid grey; height: 450px">
+            <div class="list-group">
+                <a href="#" class="list-group-item" style="height: 35px; width: 200px; margin-top: 20px; margin-left: auto; margin-right: auto; display: block; background-color: grey">
+                    <h4 class="list-group-item-heading" style="color: #ffd800;">Year : @Model.Movie.Year</h4>
+                </a>
+                <a href="#" class="list-group-item" style="height: 35px; width: 200px;  margin-left: auto; margin-right: auto; display: block; background-color: grey">
+                    <h4 class="list-group-item-heading" style="color: #ffd800; ">Genre : @Model.Movie.Genre.Name</h4>
+                </a>
+
+
+                <img src="~/Content/Images/civilwar.jpg" height="220" width="160" style="display:block; margin-top: 20px; margin-left:auto; margin-right:auto" />
+                <a href="~/Movie/Added/@Model.Movie.Id" class="btn btn-success" style="width:150px; margin: 60px 40px 20px 80px"> Add to cart (@Model.Movie.Price$) </a>
+            </div>
+        </div>
+</div>
+
+
+
+
+
+
+    <style>
+        .myclass p {
+            color: #ffd800;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 20px;
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 10px;
+        }
+    </style>
