@@ -38,27 +38,8 @@ namespace MovieShopDll.Managers
 
         public override Customer Update(MovieShopDBContext ctx, Customer c)
         {
-            //Check if address is in database
-
-            //bool exists = ctx.Addresses.Any(a => c.Address.StreetName == a.StreetName);
-            //if (exists)
-            //{
-            //    ctx.Entry(c).State = EntityState.Modified;
-            //    ctx.SaveChanges();
-
-            //}
-            //else
-            //{
-            //    Address a = c.Address;
-            //    ctx.Addresses.Add(a); //This gets added
-            //    //Gets the lastest id
-            //    int id = ctx.Addresses.Count()+1;
-            //    //Now we need to update the reference
-            //    ctx.Entry(c.Address).Entity.Id = id; //tHIS DOESNT WORK
-            //    ctx.SaveChanges();
-
-            //}
-
+            Address a = c.Address;
+            ctx.Entry(a).State = EntityState.Modified;
             ctx.Entry(c).State = EntityState.Modified;
             ctx.SaveChanges();
             return c;

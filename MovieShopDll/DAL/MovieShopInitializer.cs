@@ -6,7 +6,7 @@ using System.Web;
 
 namespace MyMovieShopAdmin.DAL
 {
-    public class MovieShopInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<MovieShopDBContext>
+    public class MovieShopInitializer : System.Data.Entity.DropCreateDatabaseAlways<MovieShopDBContext>
     {
         protected override void Seed(MovieShopDBContext context)
         {
@@ -19,14 +19,15 @@ namespace MyMovieShopAdmin.DAL
             Address address = new Address() { City="Esbjerg", StreetName="Skolegade", StreetNumber=63, ZipCode=6700};
             Address address2 = new Address() { City = "Esbjerg", StreetName = "Jyllandsgade", StreetNumber = 123, ZipCode = 6700 };
             Address address3 = new Address() { City = "Esbjerg", StreetName = "Rævestræde", StreetNumber = 5, ZipCode = 6700 };
+            Address address4 = new Address() { City = "Esbjerg", StreetName = "Sejvej", StreetNumber = 52, ZipCode = 6800 };
             Addresses.Add(address);
             Addresses.Add(address2);
             Addresses.Add(address3);
 
             Customer c = new Customer() { FirstName="Esben", LastName="Laursen", Address=address, Email="Esben.laursen@gmail.com", password="123", Role="admin"};
-            Customer c2 = new Customer() { FirstName = "Emil", LastName = "Dall", Address = address, Email = "Dallefar@boobs.com", password = "123", Role = "user" };
-            Customer c3 = new Customer() { FirstName = "Anders", LastName = "G", Address = address2, Email = "Esben.laursen@gmail.com", password = "123", Role = "user" };
-            Customer c4 = new Customer() { FirstName = "Torsten", LastName = "Sladrehank", Address = address3, Email = "Esben.laursen@gmail.com", password = "123", Role = "user" };
+            Customer c2 = new Customer() { FirstName = "Emil", LastName = "Dall", Address = address2, Email = "Dallefar@boobs.com", password = "123", Role = "user" };
+            Customer c3 = new Customer() { FirstName = "Anders", LastName = "G", Address = address3, Email = "Esben.laursen@gmail.com", password = "123", Role = "user" };
+            Customer c4 = new Customer() { FirstName = "Torsten", LastName = "Sladrehank", Address = address4, Email = "Esben.laursen@gmail.com", password = "123", Role = "user" };
             Customers.Add(c);
             Customers.Add(c2);
             Customers.Add(c3);

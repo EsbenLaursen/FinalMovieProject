@@ -18,6 +18,7 @@ namespace MyMovieShopAdmin.Controllers
         IManager<Customer> cm = new DllFacade().GetCustomerManager();
         IManager<Order> om = new DllFacade().GetOrderManager();
         IManager<Genre> gm = new DllFacade().GetGenreManager();
+
         //    CartItems cc = new CartItems();
 
 
@@ -72,17 +73,17 @@ namespace MyMovieShopAdmin.Controllers
             return View(viewModel);
         }
 
+
+        //This method works, if the id of customers and addresses are the same. Should be modified to handle the problem.
         [HttpPost]
         public ActionResult About(Customer c, Address a)
         {
-           
-            
             HomeIndexViewModel viewModel;
             if (ModelState.IsValid)
             {
-                c.Address = a;
-                c.Id = CurrentUser.Customer.Id;
-                Customer updated = cm.Update(c);
+                Customer toUpdate = cm.Read().FirstOrDefault(x => x.Email == c.Email);
+                toUpdate.Address = a;
+                Customer updated = cm.Update(toUpdate);
                 CurrentUser.Customer = updated;
                 viewModel = new HomeIndexViewModel()
                 {

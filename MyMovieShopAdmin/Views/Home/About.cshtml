@@ -78,6 +78,10 @@
                     </div>
                 </div>
             </div>
+            <input type="hidden" name="password" value="@Model.Customer.password"/>
+            <input type="hidden" name="role" value="@Model.Customer.Role" />
+            <input type="hidden" name="id" value="@Model.Customer.Id" />
+            <input type="hidden" name="id" value="@Model.Customer.Address.Id" />
 
             <div class="form-group">
                 <button type="submit" btn btn-primary btn-lg btn-block">Save</button>
