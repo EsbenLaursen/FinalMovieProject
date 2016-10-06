@@ -3,6 +3,7 @@ using MovieShopDll.Entities;
 using MyMovieShopAdmin.DAL;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,7 +42,9 @@ namespace MovieShopDll.Managers
 
         public override Movie Update(MovieShopDBContext ctx, Movie t)
         {
-            throw new NotImplementedException();
+            ctx.Entry(t).State = EntityState.Modified;
+            ctx.SaveChanges();
+            return t;
         }
     }
 }

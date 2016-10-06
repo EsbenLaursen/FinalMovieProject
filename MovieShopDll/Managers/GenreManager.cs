@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MyMovieShopAdmin.DAL;
+using System.Data.Entity;
 
 namespace MovieShopDll.Managers
 {
@@ -38,8 +39,9 @@ namespace MovieShopDll.Managers
 
         public override Genre Update(MovieShopDBContext ctx, Genre t)
         {
+            ctx.Entry(t).State = EntityState.Modified;
             ctx.SaveChanges();
-            throw new NotImplementedException();
+            return t;
         }
     }
 }

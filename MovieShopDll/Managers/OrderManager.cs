@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MyMovieShopAdmin.DAL;
+using System.Data.Entity;
 
 namespace MovieShopDll.Managers
 {
@@ -41,7 +42,9 @@ namespace MovieShopDll.Managers
 
         public override Order Update(MovieShopDBContext ctx, Order t)
         {
-            throw new NotImplementedException();
+            ctx.Entry(t).State = EntityState.Modified;
+            ctx.SaveChanges();
+            return t;
         }
     }
 }
