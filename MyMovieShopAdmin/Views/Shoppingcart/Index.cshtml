@@ -2,65 +2,83 @@
 @{
     ViewBag.Title = "ShoppingCart";
 }
-
-<h2>ShoppingCart</h2>
-@if (Model.Movies.Count == 0)
-{
-    <tr> Your cart is empty! </tr>
-} else
-{ 
-
-
-
-<table class="table table-hover" style="background-color:white">
-    <thead >
-        <tr>
-            <td>Title</td>
-            <td>Year</td>
-            <td>Genre</td>
-            <td>Price</td>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var movie in Model.Movies)
-        {
-            <tr>
-                <td>@movie.Title</td>
-                <td>@movie.Year</td>
-                <td>@movie.Genre.Name</td>
-                <td>@movie.Price</td>   
-                <td><a href="~/Shoppingcart/Delete/@movie.Id" class="btn btn-danger">Remove</a></td>
-            </tr>
-        }
-        
-        
-    </tbody>
-</table>
-}
-<table class="table" style="background-color:orangered">
-    <tr>
-        <td>Total Items</td>
-        <td></td>
-        <td></td>
-        <td>@Model.Movies.Count</td>
-    </tr>
-    <tr>
-        <td>Total price</td>
-        <td></td>
-        <td></td>
-        <td>@Model.TotalPrice</td>
-       
-            </tr>
-</table>
-@if (Model.Movies.Count == 0)
-{
-    <td><a href="~/Home/Index" class="btn btn-success" style="display:block; margin-left:auto; margin-right:10px"> Continue shopping!</a></td>
-}
-else
-{
-    <td><a href="~/Shoppingcart/Checkout" class="btn btn-success" style="display:block; margin-left:auto; margin-right:10px"> Buy now!</a></td>
-}
+<div class="col-lg-offset-1"><h1>Shoppingcart</h1></div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-10 col-md-offset-1">
+            <table class="table table-hover, grayHover">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th></th>
+                        <th class="text-center">Price</th>
+                        <th></th>
+                        <th> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var movie in Model.Movies)
+                    {
+                        <tr>
+                            <td class="col-sm-8 col-md-6">
+                                <div class="media">
+                                    <a class="thumbnail pull-left" href="~/Movie/Index/@movie.Id"> <img src="@movie.ImageUrl" height="100" width="60"> </a>
+                                    <div class="media-body">
+                                        <h4 class="media-heading"><a href="~/Movie/Index/@movie.Id">@movie.Title</a></h4>
+                                        <h5 class="media-heading"> Genre: <strong>@movie.Genre.Name </strong></h5>
+                                        <h5 class="media-heading"> Year: <strong>@movie.Year </strong></h5>
+                                        <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                            </td>
+                            <td class="col-sm-1 col-md-1 text-center"><h4><strong>@movie.Price$</strong></h4></td>
+                            <td></td>
+                            <td class="col-sm-1 col-md-1">
+                                <a href="~/Shoppingcart/Delete/@movie.Id" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Remove</a>
+                            </td>
+                        </tr>
+                    }
+                                        
+                    <tr>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>   </td>
+                        <td><h5>Total items</h5></td>
+                        <td class="text-right"><h5><strong>@Model.Movies.Count</strong></h5></td>
+                    </tr>
+                   
+                    <tr>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>   </td>
+                        <td><h3>Total</h3></td>
+                        <td class="text-right"><h3><strong>@Model.TotalPrice$</strong></h3></td>
+                    </tr>
+                    <tr>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>
+                            <a href="~/Home/Index" class="btn btn-default"> Continue shopping <span class="glyphicon glyphicon-shopping-cart"></span> </a>
+                        </td>
+                        @if (Model.Movies.Count != 0)
+                        {
+                        <td>
+                            <a href="~/Shoppingcart/Checkout" class="btn btn-success"> Checkout <span class="glyphicon glyphicon-play"></span></a>
+                        </td>
+                        }
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
 <style>
-
+    .grayHover tr:hover{
+        background-color:lightgray;
+    
+    }
 </style>

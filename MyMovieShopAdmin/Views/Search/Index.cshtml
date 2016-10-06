@@ -84,37 +84,38 @@ else
         }
     </table>
 }
+<div class="myPagination">
+    @if (Model.Pager.EndPage > 1)
+    {
+        <ul class="pagination">
+            @if (Model.Pager.CurrentPage > 1)
+            {
+                <li>
+                    <a href="~/Search/Index">First</a>
+                </li>
+                <li>
+                    <a href="~/Search/Index?page=@(Model.Pager.CurrentPage - 1)">Previous</a>
+                </li>
+            }
 
-@if (Model.Pager.EndPage > 1)
-{
-    <ul class="pagination">
-        @if (Model.Pager.CurrentPage > 1)
-        {
-            <li>
-                <a href="~/Search/Index">First</a>
-            </li>
-            <li>
-                <a href="~/Search/Index?page=@(Model.Pager.CurrentPage - 1)">Previous</a>
-            </li>
-        }
+            @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+            {
+                <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
+                    <a href="~/Search/Index?page=@page">@page</a>
+                </li>    }
 
-        @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
-        {
-            <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
-                <a href="~/Search/Index?page=@page">@page</a>
-            </li>    }
-
-        @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
-        {
-            <li>
-                <a href="~/Search/Index?page=@(Model.Pager.CurrentPage + 1)">Next</a>
-            </li>
-            <li>
-                <a href="~/Search/Index?page=@(Model.Pager.TotalPages)">Last</a>
-            </li>
-        }
-    </ul>
-}
+            @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+            {
+                <li>
+                    <a href="~/Search/Index?page=@(Model.Pager.CurrentPage + 1)">Next</a>
+                </li>
+                <li>
+                    <a href="~/Search/Index?page=@(Model.Pager.TotalPages)">Last</a>
+                </li>
+            }
+        </ul>
+    }
+</div>
 
 <style>
     .whattocall {
@@ -141,7 +142,22 @@ else
     .filter-col {
         padding-left: 10px;
         padding-right: 10px;
+ }
+        .myPagination
+    {
+           width: 200px;
+            display: block;
+             margin-left: auto;
+              margin-right: auto;
+              
     }
+        .myPagination ul li a
+    {
+           /*could modify the look and feel*/
+              
+    }
+
+   
 </style>
 <script>
 

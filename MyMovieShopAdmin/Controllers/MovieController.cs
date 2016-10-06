@@ -22,6 +22,7 @@ namespace MyMovieShopAdmin.Controllers
             return View(viewModel);
         }
 
+        [HttpPost]
         public ActionResult Added(int id)
         {
             CartItems.Movies.Add(mm.Read(id));

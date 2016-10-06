@@ -27,18 +27,18 @@
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li>
-                            @Html.ActionLink("Logout", "Logout", "Account", new { @class = " glyphicon glyphicon-user" })
+                            @Html.ActionLink("Logout", "Logout", "Account", null, new { @class = " glyphicon glyphicon-user" })
                         </li>
                     }
                     else
                     {
                         <li>
-                            @Html.ActionLink("Login", "Login", "Account", new { @class = "glyphicon glyphicon-user" })
+                            @Html.ActionLink("Login", "Login", "Account", null, new { @class = "glyphicon glyphicon-user" })
                         </li>
                     }
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li>@Html.ActionLink("Shoppingcart (" + ViewData["ItemsInCart"]+")", "Index", "Shoppingcart", new { @class ="glyphicon glyphicon-shopping-cart"})</li>
+                    <li>@Html.ActionLink("Shoppingcart (" + ViewData["ItemsInCart"]+")", "Index", "Shoppingcart", null, new { @class = "glyphicon glyphicon-shopping-cart" })</li>
                 </ul>
                 
 
