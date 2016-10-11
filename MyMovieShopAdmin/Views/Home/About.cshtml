@@ -52,9 +52,9 @@
                 <div class="cols-sm-10">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-home fa-lg" aria-hidden="true"></i> City:</span>
-                        <input type="text" class="form-control" name="City" id="addressCity" value="@Model.Customer.Address.City" />
+                        <input type="text" class="form-control" name="City" id="addressCity" value="@Model.Customer.City" />
                         <span class="input-group-addon"><i class="fa fa-home fa-lg" aria-hidden="true"></i> Zipcode:</span>
-                        <input type="text" class="form-control" name="ZipCode" id="addressCity" value="@Model.Customer.Address.ZipCode" />
+                        <input type="text" class="form-control" name="ZipCode" id="addressCity" value="@Model.Customer.ZipCode" />
                     </div>
                 </div>
             </div>
@@ -62,9 +62,9 @@
                 <div class="cols-sm-10">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-home fa-lg" aria-hidden="true"></i> StreetName:</span>
-                        <input type="text" class="form-control" name="StreetName" id="addressZip" value="@Model.Customer.Address.StreetName" />
+                        <input type="text" class="form-control" name="StreetName" id="addressZip" value="@Model.Customer.StreetName" />
                         <span class="input-group-addon"><i class="fa fa-home fa-lg" aria-hidden="true"></i> Streetnumber</span>
-                        <input type="text" class="form-control" name="StreetNumber" id="addressCity" value="@Model.Customer.Address.StreetNumber" />
+                        <input type="text" class="form-control" name="StreetNumber" id="addressCity" value="@Model.Customer.StreetNumber" />
                     </div>
                 </div>
             </div>
@@ -81,7 +81,6 @@
             <input type="hidden" name="password" value="@Model.Customer.password"/>
             <input type="hidden" name="role" value="@Model.Customer.Role" />
             <input type="hidden" name="id" value="@Model.Customer.Id" />
-            <input type="hidden" name="id" value="@Model.Customer.Address.Id" />
 
             <div class="form-group">
                 <button type="submit" btn btn-primary btn-lg btn-block">Save</button>

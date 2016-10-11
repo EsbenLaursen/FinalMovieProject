@@ -74,12 +74,11 @@ namespace MyMovieShopAdmin.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult CreateUser(Customer c, Address a)
+        public ActionResult CreateUser(Customer c)
         {
-            if(c != null && a != null)
+            if(c != null)
             {
             c.Role = "user";
-            c.Address = a;
             cm.Create(c);
             return RedirectToAction("Login");
             }

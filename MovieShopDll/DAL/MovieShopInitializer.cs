@@ -12,22 +12,15 @@ namespace MyMovieShopAdmin.DAL
         {
             List<Genre> Genres = new List<Genre>();
             List<Customer> Customers = new List<Customer>();
-            List<Address> Addresses = new List<Address>();
             List<Movie> Movies = new List<Movie>();
             List<Order> Orders = new List<Order>();
 
-            Address address = new Address() { City="Esbjerg", StreetName="Skolegade", StreetNumber=63, ZipCode=6700};
-            Address address2 = new Address() { City = "Esbjerg", StreetName = "Jyllandsgade", StreetNumber = 123, ZipCode = 6700 };
-            Address address3 = new Address() { City = "Esbjerg", StreetName = "Rævestræde", StreetNumber = 5, ZipCode = 6700 };
-            Address address4 = new Address() { City = "Esbjerg", StreetName = "Sejvej", StreetNumber = 52, ZipCode = 6800 };
-            Addresses.Add(address);
-            Addresses.Add(address2);
-            Addresses.Add(address3);
+            
 
-            Customer c = new Customer() { FirstName="Esben", LastName="Laursen", Address=address, Email="Esben.laursen@gmail.com", password="123", Role="admin"};
-            Customer c2 = new Customer() { FirstName = "Emil", LastName = "Dall", Address = address2, Email = "Dallefar@boobs.com", password = "123", Role = "user" };
-            Customer c3 = new Customer() { FirstName = "Anders", LastName = "G", Address = address3, Email = "Esben.laursen@gmail.com", password = "123", Role = "user" };
-            Customer c4 = new Customer() { FirstName = "Torsten", LastName = "Sladrehank", Address = address4, Email = "Esben.laursen@gmail.com", password = "123", Role = "user" };
+            Customer c = new Customer() { FirstName="Esben", LastName="Laursen", City = "Esbjerg", StreetName = "Skolegade", StreetNumber = 63, ZipCode = 6700, Email="Esben.laursen@gmail.com", password="123", Role="admin"};
+            Customer c2 = new Customer() { FirstName = "Emil", LastName = "Dall", City = "Esbjerg", StreetName = "Jyllandsgade", StreetNumber = 123, ZipCode = 6700, Email = "Dallefar@boobs.com", password = "123", Role = "user" };
+            Customer c3 = new Customer() { FirstName = "Anders", LastName = "G", City = "Esbjerg", StreetName = "Rævestræde", StreetNumber = 5, ZipCode = 6700, Email = "Esben.laursen@gmail.com", password = "123", Role = "user" };
+            Customer c4 = new Customer() { FirstName = "Torsten", LastName = "Sladrehank", City = "Esbjerg", StreetName = "Sejvej", StreetNumber = 52, ZipCode = 6800, Email = "Esben.laursen@gmail.com", password = "123", Role = "user" };
             Customers.Add(c);
             Customers.Add(c2);
             Customers.Add(c3);
@@ -85,10 +78,6 @@ namespace MyMovieShopAdmin.DAL
             foreach (var genre in Genres )
             {
                 context.Genres.Add(genre);
-            }
-            foreach (var a in Addresses)
-            {
-                context.Addresses.Add(a);
             }
             foreach (var cus in Customers)
             {

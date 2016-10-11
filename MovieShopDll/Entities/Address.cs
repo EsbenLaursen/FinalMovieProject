@@ -12,11 +12,6 @@ namespace MovieShopDll.Entities
         public string StreetName { get; set; }
         public string City { get; set; }
         public int StreetNumber { get; set; }
-
-        public override string ToString()
-        {
-            return "City: " + City + "StreetName: " + StreetName;
-        }
         public List<Customer> Customer { get; set; }
     }
     

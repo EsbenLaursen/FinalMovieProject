@@ -12,10 +12,8 @@ namespace MyMovieShopAdmin.Controllers
     {
         IManager<Movie> mm = new DllFacade().GetMovieManager();
         IManager<Customer> cm = new DllFacade().GetCustomerManager();
-
         IManager<Order> om = new DllFacade().GetOrderManager();
-
-        // GET: Shoppingcart
+        
         public ActionResult Index()
         {
             HomeShoppingCartViewModel viewModel = new HomeShoppingCartViewModel()
@@ -50,7 +48,6 @@ namespace MyMovieShopAdmin.Controllers
             if (c != null)
             {
                 Order o = new Order() { Date = DateTime.Now, Movies = CartItems.Movies, Customer = c };
-                
                 om.Create(o);
             }
 

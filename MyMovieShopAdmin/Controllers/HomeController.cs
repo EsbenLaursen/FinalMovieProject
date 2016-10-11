@@ -19,29 +19,20 @@ namespace MyMovieShopAdmin.Controllers
         IManager<Order> om = new DllFacade().GetOrderManager();
         IManager<Genre> gm = new DllFacade().GetGenreManager();
 
-        //    CartItems cc = new CartItems();
-
-
         public ActionResult Index()
         {
-                //ViewModel
-                HomeIndexViewModel viewModel = new HomeIndexViewModel() {
-                    MoviesInCart = mm.Read(),
-                    Movies = mm.Read(),
-                    Genres = gm.Read()
-                };
+            //ViewModel
+            HomeIndexViewModel viewModel = new HomeIndexViewModel()
+            {
+                MoviesInCart = mm.Read(),
+                Movies = mm.Read(),
+                Genres = gm.Read()
+            };
             return View(viewModel);
-
-            
         }
         [Authorize]
         public ActionResult About()
         {
-
-            // User.Identity.GetUserId(); // doesn't work????
-
-
-            //SKAL LAVES
             int id;
             // Using session then
             try
@@ -53,11 +44,7 @@ namespace MyMovieShopAdmin.Controllers
             {
                 id = 1;
             }
-            
-                CurrentUser.Customer = cm.Read(id);
-            
-        
-
+            CurrentUser.Customer = cm.Read(id);
             //ViewModel
             HomeIndexViewModel viewModel = new HomeIndexViewModel()
             {
@@ -67,39 +54,24 @@ namespace MyMovieShopAdmin.Controllers
             return View(viewModel);
         }
 
-
-        //This method works, if the id of customers and addresses are the same. Should be modified to handle the problem.
         [HttpPost]
-        public ActionResult About(Customer c, Address a)
+        public ActionResult About(Customer c)
         {
-            HomeIndexViewModel viewModel;
-            if (ModelState.IsValid)
+            if (c != null)
             {
-                Customer toUpdate = cm.Read().FirstOrDefault(x => x.Email == c.Email);
-                Customer updated = cm.Update(toUpdate);
-                viewModel = new HomeIndexViewModel()
+                if (ModelState.IsValid)
                 {
-                    Customer = CurrentUser.Customer,
-                    Orders = om.Read().Where(x => x.Customer.Id == updated.Id).ToList() //Fetches the customer, his address and his orders
-                };
-                return View(viewModel);
+                    Customer updated = cm.Update(c); //Updates the database
+                    CurrentUser.Customer = updated;
+                }
             }
             //ViewModel
-            viewModel = new HomeIndexViewModel()
+            HomeIndexViewModel viewModel = new HomeIndexViewModel()
             {
                 Customer = CurrentUser.Customer,
                 Orders = om.Read().Where(x => x.Customer.Id == CurrentUser.Customer.Id).ToList() //Fetches the customer, his address and his orders
             };
             return View(viewModel);
-        }
-
-
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
         }
         
     }
