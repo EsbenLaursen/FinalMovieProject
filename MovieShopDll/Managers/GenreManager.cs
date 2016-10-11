@@ -13,12 +13,12 @@ namespace MovieShopDll.Managers
     {
         public override List<Genre> Read(MovieShopDBContext ctx)
         {
-            return ctx.Genres.ToList();
+            return ctx.Genres.Include("Movies").ToList();
         }
 
         public override Genre Read(MovieShopDBContext ctx, int id)
         {
-            return ctx.Genres.FirstOrDefault(x => x.Id == id);
+            return ctx.Genres.Include("Movies").FirstOrDefault(x => x.Id == id);
         }
 
         public override Genre Create(MovieShopDBContext ctx, Genre t)
@@ -32,15 +32,13 @@ namespace MovieShopDll.Managers
         public override bool Delete(MovieShopDBContext ctx, int id)
         {
             Genre o = ctx.Genres.FirstOrDefault(x => x.Id == id);
-            ctx.Genres.Remove(o);
-            ctx.SaveChanges();
+            ctx.Entry(o).State = EntityState.Deleted;
             return true;
         }
 
         public override Genre Update(MovieShopDBContext ctx, Genre t)
         {
             ctx.Entry(t).State = EntityState.Modified;
-            ctx.SaveChanges();
             return t;
         }
     }

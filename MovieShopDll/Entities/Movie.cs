@@ -13,7 +13,7 @@ namespace MovieShopDll.Entities
         public double Price { get; set; }
         public string ImageUrl { get; set; }
         public string TrailerUrl { get; set; }
-        public Genre Genre { get; set; }
+        public virtual List<Genre> Genres { get; set; }
 
     }
 }

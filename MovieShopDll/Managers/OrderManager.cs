@@ -13,18 +13,17 @@ namespace MovieShopDll.Managers
     {
         public override List<Order> Read(MovieShopDBContext ctx)
         {
-            ctx.SaveChanges();
             return ctx.Orders.Include("Movies").Include("Customer"). ToList();
         }
 
         public override Order Read(MovieShopDBContext ctx, int id)
         {
-            ctx.SaveChanges();
-            return ctx.Orders.Include("Movies").FirstOrDefault(x => x.Id == id);
+            return ctx.Orders.Include("Movies").Include("Customer").FirstOrDefault(x => x.Id == id);
         }
 
         public override Order Create(MovieShopDBContext ctx, Order t)
         {
+            ctx.Entry(t.Customer).State = EntityState.Unchanged;
             ctx.Orders.Add(t);
             ctx.SaveChanges();
             return t;
@@ -35,15 +34,13 @@ namespace MovieShopDll.Managers
         public override bool Delete(MovieShopDBContext ctx, int id)
         {
             Order o = ctx.Orders.FirstOrDefault(x=>x.Id==id);
-            ctx.Orders.Remove(o);
-            ctx.SaveChanges();
+            ctx.Entry(o).State = EntityState.Deleted;
             return true;
         }
 
         public override Order Update(MovieShopDBContext ctx, Order t)
         {
             ctx.Entry(t).State = EntityState.Modified;
-            ctx.SaveChanges();
             return t;
         }
     }

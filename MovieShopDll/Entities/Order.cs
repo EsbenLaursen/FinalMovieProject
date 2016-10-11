@@ -12,6 +12,5 @@ namespace MovieShopDll.Entities
         public DateTime Date { get; set; }
         public Customer Customer { get; set; }
         public List<Movie> Movies { get; set; }
-        public int CustomerId { get; set; }
     }
 }

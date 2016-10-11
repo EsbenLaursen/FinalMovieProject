@@ -12,10 +12,6 @@ namespace MyMovieShopAdmin.DAL
     {
         public MovieShopDBContext() : base("MyMovieShopDB")
         {
-           // Database.SetInitializer<MovieShopDBContext>(new DropCreateDatabaseAlways<MovieShopDBContext>());
-
-            //Database.SetInitializer<MovieShopDBContext>(new CreateDatabaseIfNotExists<MovieShopDBContext>());
-            //Database.SetInitializer<MovieShopDBContext>(new DropCreateDatabaseIfModelChanges<MovieShopDBContext>());
             Database.SetInitializer<MovieShopDBContext>(new MovieShopInitializer());
         }
 
@@ -27,6 +23,14 @@ namespace MyMovieShopAdmin.DAL
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Customer>().HasRequired<Address>(s => s.Address).WithMany(s => s.Customer);
+
+            modelBuilder.Entity<Genre>().HasMany<Movie>(m => m.Movies).WithMany(g => g.Genres);
+
+            modelBuilder.Entity<Order>().HasMany<Movie>(o => o.Movies);
+
+            modelBuilder.Entity<Order>().HasRequired<Customer>(s => s.Customer).WithMany(o => o.Orders);
+
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
         

@@ -79,22 +79,41 @@ namespace MyMovieShopAdmin.Controllers
                 {
                     if (search.OrderBy == "Ascending")
                     {
-                        newList = mm.Read().Where(x => x.Genre.Name == search.Genre).OrderBy(x => x.Title).ToList();
+                        List<Movie> temp = mm.Read();
+                        foreach (var movie in temp)
+                        {
+                            bool l = false;
+
+                            foreach (var genre in movie.Genres)
+                            {
+                                
+                                if (genre.Name.ToLower().Equals(search.Genre.ToLower()))
+                                    {
+                                    newList.Add(movie);
+                                    l = true;
+                                }
+                                if (l == true) break;
+                                
+                            }
+                        }
+                        newList.OrderBy(x => x.Title);
+                        
+
                     }
                     else
                     {
-                        newList = mm.Read().Where(x => x.Genre.Name == search.Genre).OrderByDescending(x => x.Title).ToList();
+                      //  newList = mm.Read().Where(x => x.Genre.Name == search.Genre).OrderByDescending(x => x.Title).ToList();
                     }
                 }
                 else
                 {
                     if (search.OrderBy == "Ascending")
                     {
-                        newList = mm.Read().Where(x => x.Genre.Name == search.Genre).Where(x => x.Title.Contains(search.SearchQuery)).OrderBy(x => x.Title).ToList();
+                     //   newList = mm.Read().Where(x => x.Genre.Name == search.Genre).Where(x => x.Title.Contains(search.SearchQuery)).OrderBy(x => x.Title).ToList();
                     }
                     else
                     {
-                        newList = mm.Read().Where(x => x.Genre.Name == search.Genre).Where(x => x.Title.Contains(search.SearchQuery)).OrderByDescending(x => x.Title).ToList();
+                    //    newList = mm.Read().Where(x => x.Genre.Name == search.Genre).Where(x => x.Title.Contains(search.SearchQuery)).OrderByDescending(x => x.Title).ToList();
                     }
                 }
             }

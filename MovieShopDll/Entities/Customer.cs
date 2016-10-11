@@ -14,7 +14,7 @@ namespace MovieShopDll.Entities
         public string FirstName { get; set; }
         [Required(ErrorMessage = "Please enter a valid last name")]
         public string LastName { get; set; }
-        
+
         public Address Address { get; set; }
 
         //[RegularExpression(@"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z",
@@ -24,6 +24,7 @@ namespace MovieShopDll.Entities
         
         public string password { get; set; }
         public string Role { get; set; }
+        public virtual List<Order> Orders { get; set; }
 
     }
 }

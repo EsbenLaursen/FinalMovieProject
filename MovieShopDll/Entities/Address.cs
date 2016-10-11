@@ -17,6 +17,7 @@ namespace MovieShopDll.Entities
         {
             return "City: " + City + "StreetName: " + StreetName;
         }
+        public List<Customer> Customer { get; set; }
     }
     
 }

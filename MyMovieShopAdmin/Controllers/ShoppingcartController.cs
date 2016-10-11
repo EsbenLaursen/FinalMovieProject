@@ -40,14 +40,19 @@ namespace MyMovieShopAdmin.Controllers
         [Authorize]
         public ActionResult Checkout()
         {
-            Order o = new Order() { Date = DateTime.Now, Movies = CartItems.Movies, CustomerId= (int) Session["Id"] }; 
-
-            using (var ctx = new MovieShopDBContext())
-           {
-               ctx.Orders.Add(o);
-                ctx.SaveChanges();
+            int id = 1;
+            try
+            {
+                id = (int)Session["Id"];
             }
-
+            catch (Exception) { }
+            Customer c = cm.Read(id);
+            if (c != null)
+            {
+                Order o = new Order() { Date = DateTime.Now, Movies = CartItems.Movies, Customer = c };
+                
+                om.Create(o);
+            }
 
             CartItems.Movies = new List<Movie>(); //Resets the list
             return View();

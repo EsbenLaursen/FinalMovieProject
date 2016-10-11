@@ -45,17 +45,17 @@ namespace MyMovieShopAdmin.DAL
             Genres.Add(g5);
 
 
-            Movie m1 = new Movie() {Id = 1,  Title = "Civil war", Genre = g4,  Price = 20.0, Year = 2016, ImageUrl = "../Content/Images/civilwar.jpg", TrailerUrl = "https://www.youtube.com/embed/dKrVegVI0Us" };
-            Movie m2 = new Movie() {Id = 2,  Title = "Deadpool",  Genre = g1, Price = 20.0, Year = 2016, ImageUrl = "../Content/Images/deadpool.jpg",TrailerUrl = "https://www.youtube.com/embed/Xithigfg7dA" };
-            Movie m3 = new Movie() {Id = 3, Title = "Fight club", Genre = g3, Price = 20.0, Year = 2016, ImageUrl = "../Content/Images/fightclub.jpg", TrailerUrl = "https://www.youtube.com/embed/SUXWAEX2jlg" };
-            Movie m4 = new Movie() {Id = 4, Title = "Inception",  Genre = g2, Price = 20.0,Year = 1999, ImageUrl = "../Content/Images/inception.jpg",TrailerUrl = "https://www.youtube.com/embed/YoHD9XEInc0" };
-            Movie m5 = new Movie() {Id = 5,Title = "Seven", Genre = g5,Price = 20.0,Year = 1995, ImageUrl = "../Content/Images/seven.jpg",TrailerUrl = "https://www.youtube.com/embed/znmZoVkCjpI" };
-            Movie m6 = new Movie() {Id = 6, Title = "Saving private ryan", Genre = g4, Price = 20.0, Year = 1998, ImageUrl = "../Content/Images/savingprivateryan.jpg",TrailerUrl = "https://www.youtube.com/embed/HyVuRpjmaAI"};
-            Movie m7 = new Movie() {Id = 7,Title = "Gladiator", Genre = g1, Price = 20.0, Year = 2016,ImageUrl = "../Content/Images/gladiator.jpg",TrailerUrl = "https://www.youtube.com/embed/owK1qxDselE" };
-            Movie m8 = new Movie(){ Id = 8,Title = "Egde of tomorrow",Genre = g2, Price = 20.0, Year = 2016,ImageUrl = "../Content/Images/edgeoftomorrow.jpg",TrailerUrl = "https://www.youtube.com/embed/vw61gCe2oqI" };
-            Movie m9 = new Movie() { Id = 9, Title = "Django", Genre = g2, Price = 20.0, Year = 2016, ImageUrl = "../Content/Images/django2.jpg", TrailerUrl = "https://www.youtube.com/embed/eUdM9vrCbow" };
-            Movie m10 = new Movie() { Id = 10, Title = "The wolf of wall street", Genre = g2, Price = 20.0, Year = 2016, ImageUrl = "../Content/Images/thewolf2.jpg", TrailerUrl = "https://www.youtube.com/embed/idAVRvQeYAE" };
-            Movie m11 = new Movie() { Id = 11, Title = "Mad max", Genre = g2, Price = 20.0, Year = 2016, ImageUrl = "../Content/Images/madmax2.jpg", TrailerUrl = "https://www.youtube.com/embed/vjBb4SZ0F6Q" };
+            Movie m1 = new Movie() { Id = 1, Title = "Civil war", Genres = new List<Genre>() { g1, g2},  Price = 20.0, Year = 2016, ImageUrl = "../Content/Images/civilwar.jpg", TrailerUrl = "https://www.youtube.com/embed/dKrVegVI0Us" };
+            Movie m2 = new Movie() { Id = 2, Title = "Deadpool", Genres = new List<Genre>() { g3, g2 }, Price = 20.0, Year = 2016, ImageUrl = "../Content/Images/deadpool.jpg",TrailerUrl = "https://www.youtube.com/embed/Xithigfg7dA" };
+            Movie m3 = new Movie() {Id = 3, Title = "Fight club", Genres = new List<Genre>() { g4, g2 }, Price = 20.0, Year = 2016, ImageUrl = "../Content/Images/fightclub.jpg", TrailerUrl = "https://www.youtube.com/embed/SUXWAEX2jlg" };
+            Movie m4 = new Movie() {Id = 4, Title = "Inception",  Genres = new List<Genre>() { g1, g2 }, Price = 20.0,Year = 1999, ImageUrl = "../Content/Images/inception.jpg",TrailerUrl = "https://www.youtube.com/embed/YoHD9XEInc0" };
+            Movie m5 = new Movie() {Id = 5,Title = "Seven", Genres = new List<Genre>() { g1, g2 }, Price = 20.0,Year = 1995, ImageUrl = "../Content/Images/seven.jpg",TrailerUrl = "https://www.youtube.com/embed/znmZoVkCjpI" };
+            Movie m6 = new Movie() {Id = 6, Title = "Saving private ryan", Genres = new List<Genre>() { g1, g2 }, Price = 20.0, Year = 1998, ImageUrl = "../Content/Images/savingprivateryan.jpg",TrailerUrl = "https://www.youtube.com/embed/HyVuRpjmaAI"};
+            Movie m7 = new Movie() {Id = 7,Title = "Gladiator", Genres = new List<Genre>() { g1, g4 }, Price = 20.0, Year = 2016,ImageUrl = "../Content/Images/gladiator.jpg",TrailerUrl = "https://www.youtube.com/embed/owK1qxDselE" };
+            Movie m8 = new Movie(){ Id = 8,Title = "Egde of tomorrow", Genres = new List<Genre>() { g1, g2 }, Price = 20.0, Year = 2016,ImageUrl = "../Content/Images/edgeoftomorrow.jpg",TrailerUrl = "https://www.youtube.com/embed/vw61gCe2oqI" };
+            Movie m9 = new Movie() { Id = 9, Title = "Django", Genres = new List<Genre>() { g2, g4 }, Price = 20.0, Year = 2016, ImageUrl = "../Content/Images/django2.jpg", TrailerUrl = "https://www.youtube.com/embed/eUdM9vrCbow" };
+            Movie m10 = new Movie() { Id = 10, Title = "The wolf of wall street", Genres = new List<Genre>() { g3, g2 }, Price = 20.0, Year = 2016, ImageUrl = "../Content/Images/thewolf2.jpg", TrailerUrl = "https://www.youtube.com/embed/idAVRvQeYAE" };
+            Movie m11 = new Movie() { Id = 11, Title = "Mad max", Genres = new List<Genre>() { g2, g3 }, Price = 20.0, Year = 2016, ImageUrl = "../Content/Images/madmax2.jpg", TrailerUrl = "https://www.youtube.com/embed/vjBb4SZ0F6Q" };
             Movies.Add(m1);
             Movies.Add(m2);
             Movies.Add(m3);

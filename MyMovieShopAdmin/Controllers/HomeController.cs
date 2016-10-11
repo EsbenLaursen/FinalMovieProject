@@ -53,16 +53,10 @@ namespace MyMovieShopAdmin.Controllers
             {
                 id = 1;
             }
-
-            if (id != 0)
-            {
+            
                 CurrentUser.Customer = cm.Read(id);
-            }
-            //never called?
-            if(CurrentUser.Customer == null)
-            {
-                CurrentUser.Customer = cm.Read(1);
-            }
+            
+        
 
             //ViewModel
             HomeIndexViewModel viewModel = new HomeIndexViewModel()
@@ -82,9 +76,7 @@ namespace MyMovieShopAdmin.Controllers
             if (ModelState.IsValid)
             {
                 Customer toUpdate = cm.Read().FirstOrDefault(x => x.Email == c.Email);
-                toUpdate.Address = a;
                 Customer updated = cm.Update(toUpdate);
-                CurrentUser.Customer = updated;
                 viewModel = new HomeIndexViewModel()
                 {
                     Customer = CurrentUser.Customer,

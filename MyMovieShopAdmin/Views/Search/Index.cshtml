@@ -77,7 +77,7 @@ else
         @foreach (var movie in Model.Movies)
         {
             <tr>
-                <td class="whattocall"><b style="font-size:40px">@movie.Title</b><br />Genre: @movie.Genre.Name<br />Price: @movie.Price<br /> Year: @movie.Year</td>
+                <td class="whattocall"><b style="font-size:40px">@movie.Title</b><br />Genre:<br />Price: @movie.Price<br /> Year: @movie.Year</td>
                 <td><a href="~/Movie/Index/@movie.Id"><div class="grow now" style="height:200px; width:150px"><img src="@movie.ImageUrl" height="200" width="150" /></div></a></td>
                 <td><a href="~/Movie/Added/@movie.Id" class="btn btn-success" style="width:150px; margin: 60px 40px 20px 80px"> Add to cart </a></td>
             </tr>

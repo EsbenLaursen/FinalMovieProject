@@ -25,7 +25,12 @@
                                     <a class="thumbnail pull-left" href="~/Movie/Index/@movie.Id"> <img src="@movie.ImageUrl" height="100" width="60"> </a>
                                     <div class="media-body">
                                         <h4 class="media-heading"><a href="~/Movie/Index/@movie.Id">@movie.Title</a></h4>
-                                        <h5 class="media-heading"> Genre: <strong>@movie.Genre.Name </strong></h5>
+                                        <h5 class="media-heading"><strong>Genre:</strong>
+                                            @foreach (var genre in movie.Genres)
+                                            {
+                                                 <strong>  @genre.Name, </strong>
+                                            }
+                                        </h5>
                                         <h5 class="media-heading"> Year: <strong>@movie.Year </strong></h5>
                                         <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
                                     </div>

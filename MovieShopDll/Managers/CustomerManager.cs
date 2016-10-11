@@ -31,17 +31,13 @@ namespace MovieShopDll.Managers
         public override bool Delete(MovieShopDBContext ctx, int id)
         {
             Customer o = ctx.Customer.FirstOrDefault(x => x.Id == id);
-            ctx.Customer.Remove(o);
-            ctx.SaveChanges();
+            ctx.Entry(o).State = EntityState.Deleted;
             return true;
         }
 
         public override Customer Update(MovieShopDBContext ctx, Customer c)
         {
-            Address a = c.Address;
-            ctx.Entry(a).State = EntityState.Modified;
             ctx.Entry(c).State = EntityState.Modified;
-            ctx.SaveChanges();
             return c;
         }
     }

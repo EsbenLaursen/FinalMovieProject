@@ -15,14 +15,12 @@ namespace MovieShopDll.Managers
     {
         public override List<Movie> Read(MovieShopDBContext ctx)
         {
-            ctx.SaveChanges();
-            return ctx.Movies.Include("Genre").ToList();
+            return ctx.Movies.Include("Genres").ToList();
         }
 
         public override Movie Read(MovieShopDBContext ctx, int id)
         {
-            ctx.SaveChanges();
-            return ctx.Movies.Include("Genre").FirstOrDefault(x => x.Id == id);
+            return ctx.Movies.Include("Genres").FirstOrDefault(x => x.Id == id);
         }
 
         public override Movie Create(MovieShopDBContext ctx, Movie t)
@@ -35,15 +33,13 @@ namespace MovieShopDll.Managers
         public override bool Delete(MovieShopDBContext ctx, int id)
         {
             Movie o = ctx.Movies.FirstOrDefault(x => x.Id == id);
-            ctx.Movies.Remove(o);
-            ctx.SaveChanges();
+            ctx.Entry(o).State = EntityState.Deleted;
             return true;
         }
 
         public override Movie Update(MovieShopDBContext ctx, Movie t)
         {
             ctx.Entry(t).State = EntityState.Modified;
-            ctx.SaveChanges();
             return t;
         }
     }
