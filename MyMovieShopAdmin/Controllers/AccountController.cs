@@ -25,11 +25,14 @@ namespace MyMovieShopAdmin.Controllers
 
 
         [HttpGet]
+        [AllowAnonymous]
         public ActionResult Login(string ReturnUrl)
         {
+     
             ViewBag.ReturnUrl= ReturnUrl;
             return View();
         }
+        
         
         [HttpPost]
         public ActionResult Login(Customer c, string ReturnUrl)
@@ -45,15 +48,7 @@ namespace MyMovieShopAdmin.Controllers
                 {
                     Session["Id"] = user.Id;
                     FormsAuthentication.SetAuthCookie(user.FirstName, false);
-
-                    if (!string.IsNullOrEmpty(ReturnUrl))
-                    {
-                        return RedirectToAction("../" + ReturnUrl);
-                    }
-                    else
-                    {
-                        return RedirectToAction("../Home/Index");
-                    }
+                    return RedirectToLocal("~" + ReturnUrl);
                 }
             }
             return View();
@@ -76,15 +71,23 @@ namespace MyMovieShopAdmin.Controllers
         [HttpPost]
         public ActionResult CreateUser(Customer c)
         {
-            if(c != null)
+            if (c != null)
             {
-            c.Role = "user";
-            cm.Create(c);
-            return RedirectToAction("Login");
+                c.Role = "user";
+                cm.Create(c);
+                return RedirectToAction("Login");
             }
             return View();
         }
 
+        private ActionResult RedirectToLocal(string returnUrl)
+        {
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return RedirectToAction(returnUrl);
+            }
+            return RedirectToAction("Index", "Home");
+        }
 
     }
 }

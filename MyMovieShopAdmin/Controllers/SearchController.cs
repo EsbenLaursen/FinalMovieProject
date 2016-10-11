@@ -50,8 +50,19 @@ namespace MyMovieShopAdmin.Controllers
         public ActionResult AdvancedSearch(SearchCriteria search)
         {
 
-            var itemsPerPage = 5;
-            List<Movie> newList = new List<Movie>();
+           List<Movie> newList = new List<Movie>();
+            //foreach (var movie in mm.Read())
+            //{
+            //    bool matchCriteria = search.MatchesCriteria(search, movie);
+            //    if (matchCriteria)
+            //    {
+            //        newList.Add(movie);
+            //    }
+            //}
+
+
+            var itemsPerPage = 0;
+
             if (search.SearchQuery == null)
             {
                 search.SearchQuery = "";
@@ -72,6 +83,11 @@ namespace MyMovieShopAdmin.Controllers
             {
                 itemsPerPage = search.ItemsPerPage;
             }
+
+
+
+
+
 
             if (search.Genre != "All") // Genre er valgt
             {
@@ -148,5 +164,7 @@ namespace MyMovieShopAdmin.Controllers
             SearchCriteria.GenreBy = search.Genre;
             return RedirectToAction("Index");
         }
+
+        
     }
 }

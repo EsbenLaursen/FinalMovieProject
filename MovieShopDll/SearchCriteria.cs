@@ -18,5 +18,26 @@ namespace MovieShopDll
         public static string OrderByStatic { get; set; }
         public static string GenreBy { get; set; }
 
+
+        public bool MatchesCriteria(SearchCriteria s, Movie movie)
+        {
+           
+
+            bool matches = false;
+            foreach (var genre in movie.Genres)
+            {
+                if (genre.Name.ToLower() == s.Genre.ToLower())
+                {
+                    matches = true;
+                }
+            }
+            if (s.SearchQuery.ToLower().Contains(movie.Title.ToLower()))
+            {
+                matches = true;
+            }
+            return matches;
+        }
     }
+
+
 }
