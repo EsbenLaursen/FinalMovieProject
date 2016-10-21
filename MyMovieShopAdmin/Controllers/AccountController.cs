@@ -35,6 +35,7 @@ namespace MyMovieShopAdmin.Controllers
         
         
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Login(Customer c, string ReturnUrl)
         {
             var user = cm.Read().Where(x => x.Email.Equals(c.Email) && x.password.Equals(c.password)).FirstOrDefault();
@@ -48,7 +49,7 @@ namespace MyMovieShopAdmin.Controllers
                 {
                     Session["Id"] = user.Id;
                     FormsAuthentication.SetAuthCookie(user.FirstName, false);
-                    return RedirectToLocal("~" + ReturnUrl);
+                    return RedirectToLocal("../" + ReturnUrl);
                 }
             }
             return View();

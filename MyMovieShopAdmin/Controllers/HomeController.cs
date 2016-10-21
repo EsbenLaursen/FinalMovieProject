@@ -7,6 +7,7 @@ using System.Web.Security;
 using Microsoft.AspNet.Identity;
 using System.Security.Claims;
 using System;
+using System.Web.Routing;
 
 namespace MyMovieShopAdmin.Controllers
 {
@@ -73,6 +74,12 @@ namespace MyMovieShopAdmin.Controllers
             };
             return View(viewModel);
         }
-        
+
+        protected override void Initialize(RequestContext requestContext)
+        {
+            base.Initialize(requestContext);
+            Session.Clear();
+        }
+
     }
 }

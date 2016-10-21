@@ -10,6 +10,7 @@
             
             @using (Html.BeginForm("Login", "Account", FormMethod.Post))
             { 
+                @Html.AntiForgeryToken()
                 <input type="text" name="Email" placeholder="Username">
                 <input type="password" name="password" placeholder="Password">
                 <input type="hidden" name="ReturnUrl" value="@ViewBag.ReturnUrl" />
