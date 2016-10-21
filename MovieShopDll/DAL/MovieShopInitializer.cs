@@ -6,7 +6,7 @@ using System.Web;
 
 namespace MyMovieShopAdmin.DAL
 {
-    public class MovieShopInitializer : System.Data.Entity.DropCreateDatabaseAlways<MovieShopDBContext>
+    public class MovieShopInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<MovieShopDBContext>
     {
         protected override void Seed(MovieShopDBContext context)
         {
