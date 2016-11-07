@@ -47,7 +47,6 @@ namespace MyMovieShopAdmin.Controllers
                 }
                 else
                 {
-                    int i = 4;
                     Session["Id"] = user.Id;
                     FormsAuthentication.SetAuthCookie(user.FirstName, false);
                     return RedirectToLocal("../" + ReturnUrl);
